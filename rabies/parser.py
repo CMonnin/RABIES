@@ -951,7 +951,7 @@ def get_parser():
         )
     analysis.add_argument(
         "--ROI_csv", action='store', type=Path, 
-        default=f"{rabies_path}/DSURQE_40micron_labels.nii.gz",
+        default=f"{rabies_path}/DSURQE_40micron_R_mapping.csv",
         help=
             "A CSV file with the ROI names matching the ROI index numbers in the atlas labels Nifti file. \n"
             "A copy of this file is provided along the FC matrix generated for each subject.\n"
