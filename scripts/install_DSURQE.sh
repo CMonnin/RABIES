@@ -43,7 +43,7 @@ for i in {0..3}; do
     fi
 done
 
-if [ "$primary_success" = true]; then
+if [ "$primary_success" = true ]; then
   gzip -f ${out_dir}/DSURQE_40micron_*.nii
 fi
 
