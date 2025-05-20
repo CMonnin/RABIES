@@ -27,7 +27,7 @@ jobs:
 
       - name: Build Apptainer image from Docker URL
         run: |
-          sudo apptainer build app-${{ steps.get_version.outputs.VERSION }}.sif ghcr.io/${{ github.repository }}:latest
+          sudo apptainer build app-${{ steps.get_version.outputs.VERSION }}.sif ghcr.io/${{ github.repository_owner }}/rabies:latest
 
       - name: Test the container
         run: |
