@@ -21,16 +21,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y apptainer
 
-      - name: Verify Apptainer installation
-        run: apptainer --version
-
       - name: Get release version
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
       - name: Build Apptainer image from Docker URL
         run: |
-          sudo apptainer build app-${{ steps.get_version.outputs.VERSION }}.sif ghcr.io/cobralab/rabies:latest
+          sudo apptainer build app-${{ steps.get_version.outputs.VERSION }}.sif ghcr.io/${{ github.repository }}:latest
 
       - name: Test the container
         run: |
