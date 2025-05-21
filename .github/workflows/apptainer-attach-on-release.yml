@@ -27,7 +27,8 @@ jobs:
       - name: Build Apptainer image from Docker URL
         run: |
           REPO_LOWERCASE=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
-          sudo apptainer build app-${{ steps.get_version.outputs.VERSION }}.sif docker://ghcr.io/${REPO_LOWERCASE}:${VERSION}
+          VERSION=${{ steps.get_version.outputs.VERSION }}
+          sudo apptainer build app-${VERSION}.sif docker://ghcr.io/${REPO_LOWERCASE}:${VERSION}
 
       - name: Upload image to release
         uses: softprops/action-gh-release@v1
