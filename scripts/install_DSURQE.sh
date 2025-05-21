@@ -2,7 +2,7 @@
 set -euo pipefail
 
 out_dir=$1
-mkdir -p $out_dir
+mkdir -p "$out_dir"
 
 
 files=(
@@ -44,7 +44,7 @@ for i in {0..3}; do
 done
 
 if [ "$primary_success" = true ]; then
-  gzip -f ${out_dir}/DSURQE_40micron_*.nii
+  gzip -f "${out_dir}/DSURQE_40micron_*.nii"
 fi
 
 # if these fail too exit 1
@@ -57,18 +57,18 @@ if [ "$primary_success" = false ]; then
 fi
 
 # create regional masks
-gen_DSURQE_masks.py ${out_dir}/DSURQE_40micron_labels.nii.gz ${out_dir}/DSURQE_40micron_R_mapping.csv ${out_dir}/DSURQE_40micron
+gen_DSURQE_masks.py "${out_dir}/DSURQE_40micron_labels.nii.gz ${out_dir}/DSURQE_40micron_R_mapping.csv ${out_dir}/DSURQE_40micron"
 
 # download additional supportive files
-curl -L --retry 5 https://zenodo.org/record/5118030/files/melodic_IC.nii.gz -o ${out_dir}/melodic_IC.nii.gz
-curl -L --retry 5 https://zenodo.org/record/5118030/files/vascular_mask.nii.gz -o ${out_dir}/vascular_mask.nii.gz
+curl -L --retry 5 "https://zenodo.org/record/5118030/files/melodic_IC.nii.gz -o ${out_dir}/melodic_IC.nii.gz"
+curl -L --retry 5 "https://zenodo.org/record/5118030/files/vascular_mask.nii.gz -o ${out_dir}/vascular_mask.nii.gz"
 
 # download atlas file versions for the EPI template
-curl -L --retry 5 https://zenodo.org/record/5118030/files/EPI_template.nii.gz -o ${out_dir}/EPI_template.nii.gz
-curl -L --retry 5 https://zenodo.org/record/5118030/files/EPI_brain_mask.nii.gz -o ${out_dir}/EPI_brain_mask.nii.gz
-curl -L --retry 5 https://zenodo.org/record/5118030/files/EPI_WM_mask.nii.gz -o ${out_dir}/EPI_WM_mask.nii.gz
-curl -L --retry 5 https://zenodo.org/record/5118030/files/EPI_CSF_mask.nii.gz -o ${out_dir}/EPI_CSF_mask.nii.gz
-curl -L --retry 5 https://zenodo.org/record/5118030/files/EPI_vascular_mask.nii.gz -o ${out_dir}/EPI_vascular_mask.nii.gz
-curl -L --retry 5 https://zenodo.org/record/5118030/files/EPI_labels.nii.gz -o ${out_dir}/EPI_labels.nii.gz
-curl -L --retry 5 https://zenodo.org/record/5118030/files/melodic_IC_resampled.nii.gz -o ${out_dir}/melodic_IC_resampled.nii.gz
+curl -L --retry 5 "https://zenodo.org/record/5118030/files/EPI_template.nii.gz -o ${out_dir}/EPI_template.nii.gz"
+curl -L --retry 5 "https://zenodo.org/record/5118030/files/EPI_brain_mask.nii.gz -o ${out_dir}/EPI_brain_mask.nii.gz"
+curl -L --retry 5 "https://zenodo.org/record/5118030/files/EPI_WM_mask.nii.gz -o ${out_dir}/EPI_WM_mask.nii.gz"
+curl -L --retry 5 "https://zenodo.org/record/5118030/files/EPI_CSF_mask.nii.gz -o ${out_dir}/EPI_CSF_mask.nii.gz"
+curl -L --retry 5 "https://zenodo.org/record/5118030/files/EPI_vascular_mask.nii.gz -o ${out_dir}/EPI_vascular_mask.nii.gz"
+curl -L --retry 5 "https://zenodo.org/record/5118030/files/EPI_labels.nii.gz -o ${out_dir}/EPI_labels.nii.gz"
+curl -L --retry 5 "https://zenodo.org/record/5118030/files/melodic_IC_resampled.nii.gz -o ${out_dir}/melodic_IC_resampled.nii.gz"
 
